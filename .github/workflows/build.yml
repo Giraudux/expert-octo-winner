@@ -12,3 +12,4 @@ jobs:
         set -x
         sudo git clone --depth=1 https://github.com/raspberrypi/rpi-image-gen.git /usr/share/rpi-image-gen/
         sudo /usr/share/rpi-image-gen/install_deps.sh
+        /usr/share/rpi-image-gen/rpi-image-gen build -c /usr/share/rpi-image-gen/config/bookworm-minbase.yaml
