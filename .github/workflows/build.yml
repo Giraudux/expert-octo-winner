@@ -1,0 +1,14 @@
+name: build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    steps:
+    - uses: actions/checkout@v6
+    - run: |
+        set -x
+        sudo git clone --depth=1 https://github.com/raspberrypi/rpi-image-gen.git /usr/share/rpi-image-gen/
+        sudo /usr/share/rpi-image-gen/install_deps.sh
