@@ -14,4 +14,8 @@ jobs:
         sudo apt install -y debian-archive-keyring
         sudo git clone --depth=1 https://github.com/raspberrypi/rpi-image-gen.git /usr/share/rpi-image-gen/
         sudo /usr/share/rpi-image-gen/install_deps.sh
-        /usr/share/rpi-image-gen/rpi-image-gen build -S /usr/share/rpi-image-gen/ -c /usr/share/rpi-image-gen/config/bookworm-minbase.yaml
+        /usr/share/rpi-image-gen/rpi-image-gen build -c /usr/share/rpi-image-gen/config/bookworm-minbase.yaml
+    - uses: actions/upload-artifact@v4
+      with:
+        path: ${{ github.workspace }}/work/image-*
+        compression-level: 0
