@@ -12,7 +12,7 @@ jobs:
         set -x
         sudo apt update
         sudo apt install -y debian-archive-keyring
-        sudo git clone --depth=1 https://github.com/raspberrypi/rpi-image-gen.git /usr/share/rpi-image-gen/
+        sudo git clone --branch=v2.1.0 --depth=1 https://github.com/raspberrypi/rpi-image-gen.git /usr/share/rpi-image-gen/
         sudo /usr/share/rpi-image-gen/install_deps.sh
         /usr/share/rpi-image-gen/rpi-image-gen build -c /usr/share/rpi-image-gen/config/bookworm-minbase.yaml
     - uses: actions/upload-artifact@v4
