@@ -11,5 +11,4 @@ device:
   user1pass: fogproject
 
 layer:
-  user: rpi-user-credentials
   app: fogproject
