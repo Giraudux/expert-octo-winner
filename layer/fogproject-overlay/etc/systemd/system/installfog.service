@@ -1,0 +1,12 @@
+[Unit]
+Description=Install FOG Project
+ConditionPathExists=!/opt/fog/.fogsettings
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/installfog.sh
+
+[Install]
+WantedBy=default.target

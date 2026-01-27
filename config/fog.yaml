@@ -1,0 +1,15 @@
+include:
+  file: trixie-minbase.yaml
+
+image:
+  system_part_size: 4G # Cage + wayland + chromium + deps
+  name: fog
+
+device:
+  hostname: fog
+  user1: fog
+  user1pass: fogproject
+
+layer:
+  user: rpi-user-credentials
+  app: fogproject
