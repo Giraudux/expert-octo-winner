@@ -12,4 +12,4 @@ device:
 
 layer:
   user: rpi-user-credentials
-  app: F0g&Project
+  app: fogproject
