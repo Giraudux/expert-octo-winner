@@ -15,6 +15,7 @@
 ---
 mmdebstrap:
   # packages:
+  #  - lsb-release
   #   - apache2
   #   - build-essential
   #   - cpp
@@ -59,6 +60,6 @@ mmdebstrap:
   #   - zlib1g
   customize-hooks:
     - install -D -m 0755 "${IGconf_fogproject_overlay}/usr/sbin/installfog.sh" "$1/usr/sbin/installfog.sh"
-    - install -D -m 0644 --backup "${IGconf_fogproject_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/01-eth0.network"
+  #  - install -D -m 0644 --backup "${IGconf_fogproject_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/01-eth0.network"
     - install -D -m 0644 "${IGconf_fogproject_overlay}/etc/systemd/system/installfog.service" "$1/etc/systemd/system/installfog.service"
-    - $BDEBSTRAP_HOOKS/enable-units "$1" installfog.service
+  #  - $BDEBSTRAP_HOOKS/enable-units "$1" installfog.service
