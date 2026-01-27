@@ -8,7 +8,8 @@ image:
 device:
   hostname: fog
   user1: fog
-  user1pass: fogproject
+  user1pass: Fo0bar!!
 
 layer:
-  app: fogproject
+  user: rpi-user-credentials
+  app: F0g&Project

@@ -2,7 +2,7 @@
 # X-Env-Layer-Name: fogproject
 # X-Env-Layer-Category: suite
 # X-Env-Layer-Desc: FOG Project.
-# X-Env-Layer-Requires: systemd-net-min,rpi-user-credentials
+# X-Env-Layer-Requires: systemd-net-min
 #
 # X-Env-VarPrefix: fogproject
 #
