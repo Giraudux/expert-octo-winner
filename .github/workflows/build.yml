@@ -15,8 +15,8 @@ jobs:
         sudo git clone --branch=v2.1.0 --depth=1 https://github.com/raspberrypi/rpi-image-gen.git /usr/share/rpi-image-gen/
         sudo /usr/share/rpi-image-gen/install_deps.sh
         /usr/share/rpi-image-gen/rpi-image-gen build -S . -c rpi-fog.yaml
-        tree
+        tree deploy-*
     - uses: actions/upload-artifact@v4
       with:
-        path: ${{ github.workspace }}/work/image-*
+        path: ${{ github.workspace }}/work/deploy-*
         compression-level: 0
