@@ -8,7 +8,7 @@ image:
   boot_part_size: 200%
   root_part_size: 300%
   name: rpi-fog
-  compression: zstd
+#  compression: zstd
 
 layer:
   user: rpi-user-credentials
