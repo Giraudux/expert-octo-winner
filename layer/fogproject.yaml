@@ -91,7 +91,7 @@ mmdebstrap:
     - |-
       set -e
       mkdir "${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}"
-      for asset in OGService.msi SmartInstaller.exe
+      for asset in FOGService.msi SmartInstaller.exe
       do
         wget --directory-prefix="${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}" "https://github.com/FOGProject/fog-client/releases/download/${IGconf_fogproject_client_version}/$asset"
         wget --directory-prefix="${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}" "https://github.com/FOGProject/fog-client/releases/download/${IGconf_fogproject_client_version}/$asset.sha256"
