@@ -16,7 +16,7 @@
 mmdebstrap:
   packages:
     - iproute2
-    - lsb-releases
+    - lsb-release
   #  - lsb-release
   #   - apache2
   #   - build-essential
