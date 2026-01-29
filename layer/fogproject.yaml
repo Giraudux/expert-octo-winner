@@ -7,17 +7,17 @@
 # X-Env-VarPrefix: fogproject
 #
 # X-Env-Var-version:
-# X-Env-Var-version-Description: FOG Project version
+# X-Env-Var-version-Desc: FOG Project version
 # X-Env-Var-version-Valid: string
 # X-Env-Var-version-Set: immediate
 #
 # X-Env-Var-fos_version:
-# X-Env-Var-fos_version-Description: FOS version
+# X-Env-Var-fos_version-Desc: FOS version
 # X-Env-Var-fos_version-Valid: string
 # X-Env-Var-fos_version-Set: immediate
 #
 # X-Env-Var-client_version:
-# X-Env-Var-client_version-Description: FOG Project version
+# X-Env-Var-client_version-Desc: FOG Project version
 # X-Env-Var-client_version-Valid: string
 # X-Env-Var-client_version-Set: immediate
 #
