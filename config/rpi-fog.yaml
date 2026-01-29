@@ -9,7 +9,12 @@ image:
   root_part_size: 4G
   name: rpi-fog
 
+fogproject:
+  layer: fogproject
+  version: 1.5.10.1754
+  fos_version: 20251221
+  client_version: 0.13.0
+
 layer:
   user: rpi-user-credentials
-  app: fogproject
   base: trixie-minbase

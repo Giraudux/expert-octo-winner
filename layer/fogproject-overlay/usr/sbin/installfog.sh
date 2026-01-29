@@ -21,9 +21,14 @@ set -x
 if [ -f "../$2" ]
 then
   cp "../$2" "$2"
+else
+  wget "$@"
 fi
 EOF
 chmod +x "$temp/bin/wget"
 
 tar --directory="$temp" --strip-components=1 --extract --file=/opt/fogproject-*.tar.gz
+mkdir "$temp/tmp/"
+tar --directory="$temp/tmp/" --strip-components=1 --extract --file=/opt/fos-*.tar.gz
+tar --directory="$temp/tmp/" --strip-components=1 --extract --file=/opt/fog-client-*.tar.gz
 PATH="$temp/bin/:$PATH" routeraddress=127.0.0.1 "$temp/bin/installfog.sh" --autoaccept
