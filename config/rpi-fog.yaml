@@ -10,7 +10,6 @@ image:
   name: rpi-fog
 
 fogproject:
-  layer: fogproject
   version: 1.5.10.1754
   fos_version: 20251221
   client_version: 0.13.0
@@ -18,3 +17,4 @@ fogproject:
 layer:
   user: rpi-user-credentials
   base: trixie-minbase
+  app: fogproject
