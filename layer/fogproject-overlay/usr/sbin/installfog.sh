@@ -3,6 +3,7 @@
 set -e
 
 # TODO create exFAT partition mounted on /images/
+# TODO stub curl
 
 temp="$(mktemp --directory)"
 readonly temp
