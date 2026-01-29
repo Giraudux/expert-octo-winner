@@ -64,6 +64,8 @@ mmdebstrap:
     - chroot $1 sh -c "printf '%s:%s\n' '${IGconf_device_user1}' fogproject | chpasswd"
 # TODO wildcard?
     - install -D -m 0644 "${IGconf_fogproject_overlay}/opt/fogproject-1.5.10.1754.tar.gz" "$1/opt/"
+    - chroot $1 sh -c "tar -xf /opt/fogproject-1.5.10.1754.tar.gz"
+    - chroot $1 sh -c "ipaddress=192.168.0.1 /opt/fogproject-1.5.10.1754/bin/installfog.sh --autoaccept"
     - install -D -m 0755 "${IGconf_fogproject_overlay}/usr/sbin/installfog.sh" "$1/usr/sbin/installfog.sh"
     - install -D -m 0644 --backup "${IGconf_fogproject_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/01-eth0.network"
     - install -D -m 0644 "${IGconf_fogproject_overlay}/etc/systemd/system/installfog.service" "$1/etc/systemd/system/installfog.service"
