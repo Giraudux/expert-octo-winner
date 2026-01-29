@@ -17,54 +17,54 @@ mmdebstrap:
   packages:
     - iproute2
     - lsb-release
-  #  - lsb-release
-  #   - apache2
-  #   - build-essential
-  #   - cpp
-  #   - curl
-  #   - g++
-  #   - gawk
-  #   - gcc
-  #   - gcc-aarch64-linux-gnu
-  #   - genisoimage
-  #   - git
-  #   - gzip
-  #   - htmldoc
-  #   - isc-dhcp-server
-  #   - isolinux
-  #   - lftp
-  #   - libapache2-mod-fastcgi
-  #   - libapache2-mod-php
-  #   - libc6
-  #   - libcurl3
-  #   - liblzma-dev
-  #   - m4
-  #   - mariadb-client
-  #   - mariadb-server
-  #   - net-tools
-  #   - nfs-kernel-server
-  #   - openssh-server
-  #   - php-fpm
-  #   - php
-  #   - php-cli
-  #   - php-curl
-  #   - php-gd
-  #   - php-json
-  #   - php-ldap
-  #   - php-mbstring
-  #   - php-mysql
-  #   - php-mysqlnd
-  #   - tar
-  #   - tftpd-hpa
-  #   - tftp-hpa
-  #   - vsftpd
-  #   - wget
-  #   - zlib1g
+    - apache2
+    - bc
+    - build-essential
+    - cpp
+    - curl
+    - g++
+    - gawk
+    - gcc
+    - gcc-aarch64-linux-gnu
+    - genisoimage
+    - git
+    - gzip
+    - htmldoc
+    - isolinux
+    - lftp
+    - libapache2-mod-php
+    - libc6
+    - libcurl4t64
+    - liblzma-dev
+    - m4
+    - mariadb-client
+    - mariadb-server
+    - net-tools
+    - nfs-kernel-server
+    - openssh-server
+    - php
+    - php-bcmath
+    - php-cli
+    - php-curl
+    - php-fpm
+    - php-gd
+    - php-json
+    - php-ldap
+    - php-mbstring
+    - php-mysql
+    - php-mysqlnd
+    - tar
+    - tftp-hpa
+    - tftpd-hpa
+    - unzip
+    - vsftpd
+    - wget
+    - zlib1g
   customize-hooks:
     - chroot $1 sh -c "printf '%s:%s\n' '${IGconf_device_user1}' fogproject | chpasswd"
 # TODO wildcard?
     - install -D -m 0644 "${IGconf_fogproject_overlay}/opt/fogproject-1.5.10.1754.tar.gz" "$1/opt/"
     - install -D -m 0755 "${IGconf_fogproject_overlay}/usr/sbin/installfog.sh" "$1/usr/sbin/installfog.sh"
-  #  - install -D -m 0644 --backup "${IGconf_fogproject_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/01-eth0.network"
+    - install -D -m 0644 --backup "${IGconf_fogproject_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/01-eth0.network"
     - install -D -m 0644 "${IGconf_fogproject_overlay}/etc/systemd/system/installfog.service" "$1/etc/systemd/system/installfog.service"
   #  - $BDEBSTRAP_HOOKS/enable-units "$1" installfog.service

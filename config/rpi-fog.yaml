@@ -5,9 +5,8 @@ device:
 
 image:
   layer: image-rpios
-  boot_part_size: 200%
-# TODO update size
-  root_part_size: 16G
+  boot_part_size: 512M
+  root_part_size: 4G
   name: rpi-fog
 
 layer:

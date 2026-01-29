@@ -2,11 +2,7 @@
 
 set -e
 
-# TODO create exFAT partition
-if [ ! -d /images/ ]
-then
-  mkdir /images/
-fi
+# TODO create exFAT partition mounted on /images/
 
 temp="$(mktemp --directory)"
 readonly temp
