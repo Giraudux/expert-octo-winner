@@ -2,6 +2,12 @@
 
 set -e
 
+# TODO create exFAT partition
+if [ ! -d /images/ ]
+then
+  mkdir /images/
+fi
+
 temp="$(mktemp --directory)"
 readonly temp
 trap 'rm --recursive --force -- "$temp"' EXIT

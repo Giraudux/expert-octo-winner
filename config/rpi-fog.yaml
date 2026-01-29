@@ -1,14 +1,13 @@
 device:
   layer: rpi-all
+  hostname: raspberry
   user1: fog
-  user1pass: Fo0bar!!
 
 image:
   layer: image-rpios
   boot_part_size: 200%
   root_part_size: 300%
   name: rpi-fog
-#  compression: zstd
 
 layer:
   user: rpi-user-credentials
