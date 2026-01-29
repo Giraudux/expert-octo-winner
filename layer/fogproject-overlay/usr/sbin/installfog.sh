@@ -9,5 +9,21 @@ temp="$(mktemp --directory)"
 readonly temp
 trap 'rm --recursive --force -- "$temp"' EXIT
 
+# curl stub
+# mkdir -p "$temp/bin/"
+# touch "$temp/bin/curl"
+# chmod +x "$temp/bin/curl"
+
+# wget stub
+mkdir -p "$temp/bin/"
+cat << 'EOF' > "$temp/bin/wget"
+set -x
+if [ -f "../$2" ]
+then
+  cp "../$2" "$2"
+fi
+EOF
+chmod +x "$temp/bin/wget"
+
 tar --directory="$temp" --strip-components=1 --extract --file=/opt/fogproject-*.tar.gz
-routeraddress=127.0.0.1 "$temp/bin/installfog.sh" --autoaccept
+PATH="$temp/bin/:$PATH" routeraddress=127.0.0.1 "$temp/bin/installfog.sh" --autoaccept
