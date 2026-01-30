@@ -30,7 +30,7 @@
 ---
 mmdebstrap:
   packages:
-    - envsubst
+    - gettext-base
     - iproute2
     - lsb-release
     - apache2
