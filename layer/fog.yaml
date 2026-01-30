@@ -30,8 +30,11 @@
 ---
 mmdebstrap:
   packages:
+    - jc
+    - jq
     - gettext-base
     - iproute2
+    - exfatprogs
     - lsb-release
     - apache2
     - bc
