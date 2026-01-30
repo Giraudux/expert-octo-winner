@@ -77,7 +77,7 @@ mmdebstrap:
     - wget
     - zlib1g
   customize-hooks:
-    - chroot $1 sh -c "printf '%s:%s\n' '${IGconf_device_user1}' fogproject | chpasswd"
+    - chroot $1 sh -c "printf '%s:%s\n' '${IGconf_device_user1}' password | chpasswd"
     - mkdir --parents "${IGconf_fogproject_overlay}/opt/"
     - wget --output-document="${IGconf_fogproject_overlay}/opt/fogproject-${IGconf_fogproject_version}.tar.gz" "https://github.com/FOGProject/fogproject/archive/refs/tags/${IGconf_fogproject_version}.tar.gz"
     - |-
@@ -106,4 +106,4 @@ mmdebstrap:
     - install -D -m 0755 "${IGconf_fogproject_overlay}/usr/sbin/installfog.sh" "$1/usr/sbin/"
     - install -D -m 0644 --backup "${IGconf_fogproject_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/"
     - install -D -m 0644 "${IGconf_fogproject_overlay}/etc/systemd/system/installfog.service" "$1/etc/systemd/system/"
-  #  - $BDEBSTRAP_HOOKS/enable-units "$1" installfog.service
+    - $BDEBSTRAP_HOOKS/enable-units "$1" installfog.service
