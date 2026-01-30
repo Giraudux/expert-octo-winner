@@ -88,7 +88,7 @@ mmdebstrap:
         wget --directory-prefix="${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}" "https://github.com/FOGProject/fos/releases/download/${IGconf_fogproject_fos_version}/$asset"
         wget --directory-prefix="${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}" "https://github.com/FOGProject/fos/releases/download/${IGconf_fogproject_fos_version}/$asset.sha256"
       done
-      tar -acf "${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}.tar.gz" "${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}"
+      tar -acf "${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}.tar.gz" -C "${IGconf_fogproject_overlay}/opt/" "fos-${IGconf_fogproject_fos_version}"
       rm -r "${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}"
     - |-
       set -e
@@ -98,7 +98,7 @@ mmdebstrap:
         wget --directory-prefix="${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}" "https://github.com/FOGProject/fog-client/releases/download/${IGconf_fogproject_client_version}/$asset"
         wget --directory-prefix="${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}" "https://github.com/FOGProject/fog-client/releases/download/${IGconf_fogproject_client_version}/$asset.sha256"
       done
-      tar -acf "${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}.tar.gz" "${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}"
+      tar -acf "${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}.tar.gz" -C "${IGconf_fogproject_overlay}/opt/" "fog-client-${IGconf_fogproject_client_version}"
       rm -r "${IGconf_fogproject_overlay}/opt/fog-client-${IGconf_fogproject_client_version}"
     - install -D -m 0644 "${IGconf_fogproject_overlay}/opt/fogproject-${IGconf_fogproject_version}.tar.gz" "$1/opt/"
     - install -D -m 0644 "${IGconf_fogproject_overlay}/opt/fos-${IGconf_fogproject_fos_version}.tar.gz" "$1/opt/"
