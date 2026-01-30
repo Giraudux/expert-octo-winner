@@ -1,0 +1,109 @@
+# METABEGIN
+# X-Env-Layer-Name: fog
+# X-Env-Layer-Category: suite
+# X-Env-Layer-Desc: FOG Project.
+# X-Env-Layer-Requires: systemd-net-min
+#
+# X-Env-VarPrefix: fog
+#
+# X-Env-Var-version:
+# X-Env-Var-project_version-Desc: FOG Project version
+# X-Env-Var-project_version-Valid: string
+# X-Env-Var-project_version-Set: immediate
+#
+# X-Env-Var-os_version:
+# X-Env-Var-os_version-Desc: FOS version
+# X-Env-Var-os_version-Valid: string
+# X-Env-Var-os_version-Set: immediate
+#
+# X-Env-Var-client_version:
+# X-Env-Var-client_version-Desc: FOG Project version
+# X-Env-Var-client_version-Valid: string
+# X-Env-Var-client_version-Set: immediate
+#
+# X-Env-Var-overlay: ${DIRECTORY}/fog-overlay
+# X-Env-Var-overlay-Desc: Directory holding filesystem assets.
+# X-Env-Var-overlay-Required: n
+# X-Env-Var-overlay-Valid: string
+# X-Env-Var-overlay-Set: y
+# METAEND
+---
+mmdebstrap:
+  packages:
+    - gettext-base
+    - iproute2
+    - lsb-release
+    - apache2
+    - bc
+    - build-essential
+    - cpp
+    - curl
+    - g++
+    - gawk
+    - gcc
+    - gcc-aarch64-linux-gnu
+    - genisoimage
+    - git
+    - gzip
+    - htmldoc
+    - isolinux
+    - lftp
+    - libapache2-mod-php
+    - libc6
+    - libcurl4t64
+    - liblzma-dev
+    - m4
+    - mariadb-client
+    - mariadb-server
+    - net-tools
+    - nfs-kernel-server
+    - openssh-server
+    - php
+    - php-bcmath
+    - php-cli
+    - php-curl
+    - php-fpm
+    - php-gd
+    - php-json
+    - php-ldap
+    - php-mbstring
+    - php-mysql
+    - php-mysqlnd
+    - tar
+    - tftp-hpa
+    - tftpd-hpa
+    - unzip
+    - vsftpd
+    - wget
+    - zlib1g
+  customize-hooks:
+    - chroot $1 sh -c "printf '%s:%s\n' '${IGconf_device_user1}' password | chpasswd"
+    - mkdir --parents "${IGconf_fog_overlay}/opt/"
+    - wget --output-document="${IGconf_fog_overlay}/opt/fogproject-${IGconf_fog_project_version}.tar.gz" "https://github.com/FOGProject/fogproject/archive/refs/tags/${IGconf_fog_project_version}.tar.gz"
+    - |-
+      set -e
+      mkdir "${IGconf_fog_overlay}/opt/fos-${IGconf_fog_os_version}"
+      for asset in init.xz init_32.xz bzImage bzImage32 arm_init.cpio.gz arm_Image
+      do
+        wget --directory-prefix="${IGconf_fog_overlay}/opt/fos-${IGconf_fog_os_version}" "https://github.com/FOGProject/fos/releases/download/${IGconf_fog_os_version}/$asset"
+        wget --directory-prefix="${IGconf_fog_overlay}/opt/fos-${IGconf_fog_os_version}" "https://github.com/FOGProject/fos/releases/download/${IGconf_fog_os_version}/$asset.sha256"
+      done
+      tar -acf "${IGconf_fog_overlay}/opt/fos-${IGconf_fog_os_version}.tar.gz" -C "${IGconf_fog_overlay}/opt/" "fos-${IGconf_fog_os_version}"
+      rm -r "${IGconf_fog_overlay}/opt/fos-${IGconf_fog_os_version}"
+    - |-
+      set -e
+      mkdir "${IGconf_fog_overlay}/opt/fog-client-${IGconf_fog_client_version}"
+      for asset in FOGService.msi SmartInstaller.exe
+      do
+        wget --directory-prefix="${IGconf_fog_overlay}/opt/fog-client-${IGconf_fog_client_version}" "https://github.com/FOGProject/fog-client/releases/download/${IGconf_fog_client_version}/$asset"
+        wget --directory-prefix="${IGconf_fog_overlay}/opt/fog-client-${IGconf_fog_client_version}" "https://github.com/FOGProject/fog-client/releases/download/${IGconf_fog_client_version}/$asset.sha256"
+      done
+      tar -acf "${IGconf_fog_overlay}/opt/fog-client-${IGconf_fog_client_version}.tar.gz" -C "${IGconf_fog_overlay}/opt/" "fog-client-${IGconf_fog_client_version}"
+      rm -r "${IGconf_fog_overlay}/opt/fog-client-${IGconf_fog_client_version}"
+    - install -D -m 0644 "${IGconf_fog_overlay}/opt/fogproject-${IGconf_fog_project_version}.tar.gz" "$1/opt/"
+    - install -D -m 0644 "${IGconf_fog_overlay}/opt/fos-${IGconf_fog_os_version}.tar.gz" "$1/opt/"
+    - install -D -m 0644 "${IGconf_fog_overlay}/opt/fog-client-${IGconf_fog_client_version}.tar.gz" "$1/opt/"
+    - install -D -m 0755 "${IGconf_fog_overlay}/usr/sbin/installfog.sh" "$1/usr/sbin/"
+    - install -D -m 0644 --backup "${IGconf_fog_overlay}/etc/systemd/network/01-eth0.network" "$1/etc/systemd/network/"
+    - install -D -m 0644 "${IGconf_fog_overlay}/etc/systemd/system/installfog.service" "$1/etc/systemd/system/"
+    - $BDEBSTRAP_HOOKS/enable-units "$1" installfog.service
