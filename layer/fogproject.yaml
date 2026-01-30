@@ -30,6 +30,7 @@
 ---
 mmdebstrap:
   packages:
+    - envsubst
     - iproute2
     - lsb-release
     - apache2
