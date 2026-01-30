@@ -78,6 +78,7 @@ mmdebstrap:
     - zlib1g
   customize-hooks:
     - chroot $1 sh -c "printf '%s:%s\n' '${IGconf_device_user1}' fogproject | chpasswd"
+    - mkdir --parents "${IGconf_fogproject_overlay}/opt/"
     - wget --output-document="${IGconf_fogproject_overlay}/opt/fogproject-${IGconf_fogproject_version}.tar.gz" "https://github.com/FOGProject/fogproject/archive/refs/tags/${IGconf_fogproject_version}.tar.gz"
     - |-
       set -e
