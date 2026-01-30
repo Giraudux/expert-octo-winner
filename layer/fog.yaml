@@ -6,7 +6,7 @@
 #
 # X-Env-VarPrefix: fog
 #
-# X-Env-Var-version:
+# X-Env-Var-project_version:
 # X-Env-Var-project_version-Desc: FOG Project version
 # X-Env-Var-project_version-Valid: string
 # X-Env-Var-project_version-Set: immediate
