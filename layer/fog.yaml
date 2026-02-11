@@ -34,7 +34,7 @@ mmdebstrap:
     - jq
     - gettext-base
     - iproute2
-    - exfatprogs
+    - cloud-guest-utils
     - lsb-release
     - apache2
     - bc
