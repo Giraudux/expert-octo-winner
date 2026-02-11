@@ -8,7 +8,6 @@ image:
   boot_part_size: 128M
   root_part_size: 4G
   name: rpi-fog
-  compression: zstd
 
 fog:
   project_version: 1.5.10.1754
