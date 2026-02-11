@@ -3,11 +3,11 @@
 set -xe
 
 # Grow root partition and filesystem
-root_filesystem_source=$(findmnt --noheadings --output source /)
+root_filesystem_source=$(findmnt --json --output source / | jq --raw-output ".filesystems[0].source")
 readonly root_filesystem_source
-root_blockdevice_pkname=$(lsblk --noheadings --output pkname --paths "$root_filesystem_source")
+root_blockdevice_pkname=$(lsblk --json --output pkname --paths "$root_filesystem_source" | jq --raw-output ".blockdevices[0].pkname")
 readonly root_blockdevice_pkname
-root_blockdevice_partn=$(lsblk --noheadings --output partn "$root_filesystem_source")
+root_blockdevice_partn=$(lsblk --json --output partn "$root_filesystem_source" | jq --raw-output ".blockdevices[0].partn")
 readonly root_blockdevice_partn
 growpart "$root_blockdevice_pkname" "$root_blockdevice_partn"
 resize2fs "$root_filesystem_source"
