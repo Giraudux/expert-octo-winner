@@ -2,6 +2,7 @@
 
 set -xe
 
+# Grow root partition and filesystem
 root_filesystem_source=$(findmnt --noheadings --output source /)
 readonly root_filesystem_source
 root_blockdevice_pkname=$(lsblk --noheadings --output pkname --paths "$root_filesystem_source")
@@ -16,7 +17,7 @@ readonly temp
 mkdir --parents "$temp/tmp/" "$temp/cache/" "$temp/bin/"
 trap 'rm --recursive --force -- "$temp"' EXIT
 
-# wget stub
+# Stub
 cat << 'EOF' > "$temp/bin/download.tpl"
 #!/bin/sh
 readonly cachedir="$DOWNLOAD_CACHE"
@@ -35,9 +36,12 @@ DOWNLOAD_CACHE="$temp/cache/" DOWNLOAD_CMD="$(command -v wget)" envsubst '$DOWNL
 DOWNLOAD_CACHE="$temp/cache/" DOWNLOAD_CMD="$(command -v curl)" envsubst '$DOWNLOAD_CACHE $DOWNLOAD_CMD' < "$temp/bin/download.tpl" > "$temp/bin/curl"
 chmod +x "$temp/bin/"*
 
+# Extract assets
 tar --directory="$temp" --strip-components=1 --extract --file /opt/fogproject-*.tar.gz
 tar --directory="$temp/cache/" --strip-components=1 --extract --file /opt/fos-*.tar.gz
 tar --directory="$temp/cache/" --strip-components=1 --extract --file /opt/fog-client-*.tar.gz
+
+# Install FOG
 PATH="$temp/bin/:$PATH" routeraddress=127.0.0.1 "$temp/bin/installfog.sh" --autoaccept
 
 # Create /images/ exFAT partition
