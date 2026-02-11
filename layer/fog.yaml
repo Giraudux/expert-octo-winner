@@ -30,7 +30,6 @@
 ---
 mmdebstrap:
   packages:
-    - jc
     - jq
     - gettext-base
     - iproute2
